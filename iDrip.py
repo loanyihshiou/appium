@@ -6,8 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
 import os
-from Idrip_login import IdripLogin
-
+from IdripBase import IdripMethod
 
 
 class IdripTest(unittest.TestCase):
@@ -36,7 +35,7 @@ class IdripTest(unittest.TestCase):
 
     # @unittest.skip
     def test01_shopping_cart(self):
-        page = IdripLogin(self.idrip)
+        page = IdripMethod(self.idrip)
         page.login("louistest0625@gmail.com", 711228)
         self.idrip.find_element_by_id("com.coffee.iDrip:id/view_salon").click()
         self.idrip.find_element_by_id("com.coffee.iDrip:id/asyncImageGlideView").click()
@@ -55,7 +54,7 @@ class IdripTest(unittest.TestCase):
 
     # @unittest.skip
     def test02_market(self):
-        page = IdripLogin(self.idrip)
+        page = IdripMethod(self.idrip)
         page.login("louistest0625@gmail.com", 711228)
         self.idrip.find_element_by_id("com.coffee.iDrip:id/linearLayout_shop").click()
         self.idrip.find_element_by_id("com.coffee.iDrip:id/textView_subtitle").click()
@@ -69,7 +68,7 @@ class IdripTest(unittest.TestCase):
 
     # @unittest.skip
     def test03_market(self):
-        page = IdripLogin(self.idrip)
+        page = IdripMethod(self.idrip)
         page.login("louistest0625@gmail.com", 711228)
         self.idrip.find_element_by_xpath("//android.widget.TextView[@text='咖啡市集']").click()
         self.idrip.find_element_by_xpath(

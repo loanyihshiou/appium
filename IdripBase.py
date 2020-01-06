@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-class IdripLogin:
+class IdripMethod:
 
     def __init__(self, idrip):
         self.idrip = idrip
