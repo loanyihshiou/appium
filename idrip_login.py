@@ -8,7 +8,6 @@ class IdripLogin:
     def __init__(self, idrip):
         self.idrip = idrip
 
-
     def login(self, username, password):
         """登入"""
         self.idrip.find_element_by_id("com.coffee.iDrip:id/linearLayout_my").click()
