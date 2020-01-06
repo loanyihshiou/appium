@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
 import os
-from Driver.HTMLTestRunner import HTMLTestRunner
 
 
 class IdripTest(unittest.TestCase):
