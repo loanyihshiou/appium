@@ -36,8 +36,7 @@ class IdripTest(unittest.TestCase):
 
     # @unittest.skip
     def test01_shopping_cart(self):
-        idrip = IdripLogin()
-        idrip.login("louistest0625@gmail.com", 711228)
+        id.login("louistest0625@gmail.com", 711228)
         self.idrip.find_element_by_id("com.coffee.iDrip:id/view_salon").click()
         self.idrip.find_element_by_id("com.coffee.iDrip:id/asyncImageGlideView").click()
         # 下滑三次
