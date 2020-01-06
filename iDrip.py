@@ -50,7 +50,7 @@ class IdripTest(unittest.TestCase):
             time.sleep(1)
         self.idrip.find_element_by_id("com.coffee.iDrip:id/button_ok").click()
         time.sleep(0.5)
-        toast = IdripLogin.is_toast_exist("加入購物車完成")
+        toast = page.is_toast_exist("加入購物車完成")
         self.assertEqual(toast, True)
 
     # @unittest.skip
