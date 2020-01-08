@@ -1,12 +1,19 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import yagmail
+
 
 
 class IdripMethod:
 
     def __init__(self, idrip):
         self.idrip = idrip
+
+    def send_mail(self, report):
+        yag = yagmail.SMTP(user="louis.ruan@silkrode.com.tw", password="Lr19821228", host="smtp.gmail.com")
+        yag.send("louis.ruan@silkrode.com.tw", subject="Test Report", contents="please check", attachments=report)
+        print("Test report Send!")
 
     def login(self, username, password):
         """Email登入"""
