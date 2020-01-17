@@ -2,8 +2,6 @@
 from appium import webdriver
 import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import unittest
 import os
 from IdripBase import IdripMethod
@@ -51,21 +49,19 @@ class IdripTest(unittest.TestCase):
         toast = page.is_toast_exist("加入購物車完成")
         self.assertEqual(toast, True)
 
-    @unittest.skip
     def test02_market(self):
         page = IdripMethod(self.idrip)
         page.login("louistest0625@gmail.com", 711228)
         page.by_id_click("com.coffee.iDrip:id/linearLayout_shop")
         page.by_id_click("com.coffee.iDrip:id/textView_subtitle")
         page.by_id_click("com.coffee.iDrip:id/button")
-        page.by_xpath_click("//android.widget.TextView[@text='香檳金'")
+        page.by_xpath_click("//android.widget.TextView[@text='香檳金']")
         page.by_id_click("com.coffee.iDrip:id/view_add")
         page.by_id_click("com.coffee.iDrip:id/button_ok")
         time.sleep(0.5)
         toast = page.is_toast_exist("購物車完成")
         self.assertEqual(toast, True)
 
-    @unittest.skip
     def test03_market(self):
         page = IdripMethod(self.idrip)
         page.login("louistest0625@gmail.com", 711228)
