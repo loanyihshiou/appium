@@ -25,6 +25,14 @@ class IdripMethod:
         self.idrip.find_element_by_id("com.coffee.iDrip:id/linearLayout_next").click()
         self.idrip.find_element_by_id("com.coffee.iDrip:id/textview_skip").click()
 
+    def by_id_click(self, id_):
+        """從ID找"""
+        self.idrip.find_element_by_id(id_).click()
+
+    def by_xpath_click(self, id_):
+        """從XPATH找"""
+        self.idrip.find_element_by_xpath(id_).click()
+
     def swipe_up(self, t, n):
         """向上滑動銀幕"""
         x = self.idrip.get_window_size()['width']
@@ -54,7 +62,7 @@ class IdripMethod:
     def is_toast_exist(self, text):
         """驗證toast文字"""
         try:
-            toast_loc = ("xpath", ".//*[contains(@text,'%s')]" % text)  # 抓取toast
+            toast_loc = ("xpath", ".//*[contains(@text,'%s')]" % text)  # 抓取toasti
             WebDriverWait(self.idrip, 10, 0.05).until(EC.presence_of_element_located(toast_loc))
             print(text)
             return True
