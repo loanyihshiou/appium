@@ -4,26 +4,28 @@ import time
 import yagmail
 
 
+def send_mail(report):
+    yag = yagmail.SMTP(user="louis.ruan@silkrode.com.tw", password="Lr19821228", host="smtp.gmail.com")
+    yag.send("louis.ruan@silkrode.com.tw", subject="Test Report", contents="please check", attachments=report)
+    print("Test report Send!")
+
 
 class IdripMethod:
 
     def __init__(self, idrip):
         self.idrip = idrip
 
-    def send_mail(self, report):
-        yag = yagmail.SMTP(user="louis.ruan@silkrode.com.tw", password="Lr19821228", host="smtp.gmail.com")
-        yag.send("louis.ruan@silkrode.com.tw", subject="Test Report", contents="please check", attachments=report)
-        print("Test report Send!")
-
-    def login(self, username, password):
+    def email_login(self, email, password):
         """Email登入"""
-        self.idrip.find_element_by_id("com.coffee.iDrip:id/linearLayout_my").click()
-        self.idrip.find_element_by_id("com.coffee.iDrip:id/textView_name").click()
-        self.idrip.find_element_by_id("com.coffee.iDrip:id/textview_login").click()
-        self.idrip.find_element_by_id("com.coffee.iDrip:id/editText_email").send_keys(username)
-        self.idrip.find_element_by_id("com.coffee.iDrip:id/editText_pw").send_keys(password)
-        self.idrip.find_element_by_id("com.coffee.iDrip:id/linearLayout_next").click()
-        self.idrip.find_element_by_id("com.coffee.iDrip:id/textview_skip").click()
+        self.idrip.find_element_by_xpath("//android.widget.ImageView[@text='我的']").click()
+        self.idrip.find_element_by_xpath("//android.widget.ImageView[@text='我的訂單']").click()
+        self.idrip.find_element_by_xpath("//android.view.View[@text='已有帳號登入']").click()
+        self.idrip.find_element_by_xpath("//android.widget.EditText[@text='請輸入Email']").send_keys(email)
+        self.idrip.find_element_by_xpath("//android.widget.EditText[@text='請輸入密碼']").send_keys(password)
+        self.idrip.find_element_by_xpath("//android.view.View[@text='登入']").click()
+
+    def click_coffee_market(self):
+        self.idrip.find_element_by_xpath("//android.widget.ImageView[@text='咖啡市集']")
 
     def by_id_click(self, id_):
         """從ID找"""
@@ -68,4 +70,3 @@ class IdripMethod:
             return True
         except:
             return False
-

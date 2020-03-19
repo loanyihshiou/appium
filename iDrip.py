@@ -18,15 +18,10 @@ class IdripTest(unittest.TestCase):
             # 'deviceName': 'Android emulator',
             'automationName': 'uiautomator2',
             'appPackage': 'com.coffee.iDrip',
-            'appActivity': 'com.project.baseproject.activity.main.Start_Activity'
+            'appActivity': 'com.coffee.idrip.MainActivity'
         }
         self.idrip = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-        self.idrip.implicitly_wait(20)
-        """同意權限"""
-        self.idrip.find_element(By.ID, "com.coffee.iDrip:id/textView_yes").click()
-        time.sleep(1)
-        for i in range(3):
-            self.idrip.find_element_by_id("com.android.packageinstaller:id/permission_allow_button").click()
+        self.idrip.implicitly_wait(10)
 
     def tearDown(self):
         self.idrip.quit()
@@ -35,16 +30,18 @@ class IdripTest(unittest.TestCase):
     # @unittest.skip
     def test01_shopping_cart(self):
         page = IdripMethod(self.idrip)
-        page.login("louistest0625@gmail.com", 711228)
-        page.by_id_click("com.coffee.iDrip:id/view_salon")
-        page.by_id_click("com.coffee.iDrip:id/asyncImageGlideView")
+        page.email_login(email="louistest0625@gmail.com", password=711228)
+        page.click_coffee_market()
+        page.by_xpath_click("//android.view.View[@text='咖啡包']")
+        page.by_xpath_click("//android.view.View[@text='G1極致 Top']")
+        page.by_xpath_click("//android.view.View[@text='[陳志煌] 北歐烘焙風華配方 2013 北歐烘焙冠軍']")
         page.swipe_up(1000, 3)
-        page.by_id_click("com.coffee.iDrip:id/view_add")
+        page.by_xpath_click("//android.view.View[@text='加入購物車']")
         time.sleep(2)
         for i in range(2):
-            page.by_id_click("com.coffee.iDrip:id/view_add")
+            page.by_xpath_click("//android.view.View[@index='7']")
             time.sleep(1)
-        page.by_id_click("com.coffee.iDrip:id/button_ok")
+        page.by_xpath_click("//android.view.View[@text='確認']")
         time.sleep(0.5)
         toast = page.is_toast_exist("加入購物車完成")
         self.assertEqual(toast, True)
