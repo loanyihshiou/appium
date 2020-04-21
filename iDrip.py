@@ -13,8 +13,8 @@ class IdripTest(unittest.TestCase):
         os.system("adb install /Users/yihshiou/PycharmProjects/Appium/apk/com.coffee.iDrip.apk")
         desired_caps = {
             'platformName': 'Android',
-            'platformVersion': '7.0',
-            'deviceName': 'QYJ7N17907000216',
+            'platformVersion': '10.0',
+            'deviceName': '2bf04094591c7ece',
             # 'deviceName': 'Android emulator',
             'automationName': 'uiautomator2',
             'appPackage': 'com.coffee.iDrip',
@@ -27,10 +27,9 @@ class IdripTest(unittest.TestCase):
         self.idrip.quit()
         os.system("adb uninstall com.coffee.iDrip")
 
-    # @unittest.skip
     def test01_shopping_cart(self):
         page = IdripMethod(self.idrip)
-        page.email_login(email="louistest0625@gmail.com", password=711228)
+        page.email_login("louistest0625@gmail.com", 711228)
         page.click_coffee_market()
         page.by_xpath_click("//android.view.View[@text='咖啡包']")
         page.by_xpath_click("//android.view.View[@text='G1極致 Top']")
@@ -48,7 +47,7 @@ class IdripTest(unittest.TestCase):
 
     def test02_market(self):
         page = IdripMethod(self.idrip)
-        page.login("louistest0625@gmail.com", 711228)
+        page.email_login("louistest0625@gmail.com", 711228)
         page.by_id_click("com.coffee.iDrip:id/linearLayout_shop")
         page.by_id_click("com.coffee.iDrip:id/textView_subtitle")
         page.by_id_click("com.coffee.iDrip:id/button")
@@ -61,7 +60,7 @@ class IdripTest(unittest.TestCase):
 
     def test03_market(self):
         page = IdripMethod(self.idrip)
-        page.login("louistest0625@gmail.com", 711228)
+        page.email_login("louistest0625@gmail.com", 711228)
         page.by_xpath_click("//android.widget.TextView[@text='咖啡市集']")
         page.by_xpath_click("//android.widget.TextView[contains(@resource-id, 'packet') and @text='咖啡包']")
         page.swipe_up(500, 1)

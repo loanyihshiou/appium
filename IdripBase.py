@@ -1,13 +1,6 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-import yagmail
-
-
-def send_mail(report):
-    yag = yagmail.SMTP(user="louis.ruan@silkrode.com.tw", password="Lr19821228", host="smtp.gmail.com")
-    yag.send("louis.ruan@silkrode.com.tw", subject="Test Report", contents="please check", attachments=report)
-    print("Test report Send!")
 
 
 class IdripMethod:
@@ -20,9 +13,9 @@ class IdripMethod:
         self.idrip.find_element_by_xpath("//android.widget.ImageView[@text='我的']").click()
         self.idrip.find_element_by_xpath("//android.widget.ImageView[@text='我的訂單']").click()
         self.idrip.find_element_by_xpath("//android.view.View[@text='已有帳號登入']").click()
-        self.idrip.find_element_by_xpath("//android.widget.EditText[@text='請輸入Email']").send_keys(email)
-        self.idrip.find_element_by_xpath("//android.widget.EditText[@text='請輸入密碼']").send_keys(password)
-        self.idrip.find_element_by_xpath("//android.view.View[@text='登入']").click()
+        self.idrip.find_element_by_xpath("//android.widget.EditText[@text='請輸入Email' and @index='2']").send_keys(email)
+        self.idrip.find_element_by_xpath("//android.widget.EditText[@text='請輸入密碼' and @index='3']").send_keys(password)
+        self.idrip.find_element_by_xpath("//android.view.View[@text='登入'and @index='4']").click()
 
     def click_coffee_market(self):
         self.idrip.find_element_by_xpath("//android.widget.ImageView[@text='咖啡市集']")
@@ -64,7 +57,7 @@ class IdripMethod:
     def is_toast_exist(self, text):
         """驗證toast文字"""
         try:
-            toast_loc = ("xpath", ".//*[contains(@text,'%s')]" % text)  # 抓取toasti
+            toast_loc = ("xpath", ".//*[contains(@text,'%s')]" % text)  # 抓取toast
             WebDriverWait(self.idrip, 10, 0.05).until(EC.presence_of_element_located(toast_loc))
             print(text)
             return True
